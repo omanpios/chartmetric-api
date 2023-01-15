@@ -8,20 +8,19 @@ import io.restassured.response.Response;
 public class SearchEngine {
     Response response;
 
-    public SearchEngine() {
+    public SearchEngine(String song) {
         RestAssured.baseURI = ("https://api.chartmetric.com/");
         RestAssured.basePath = ("api/search");
 
         GetAccessToken accessToken = new GetAccessToken();
 
         response = given()
-               // .header("Authorization", "Bearer " + accessToken.toString())
+                .log().uri()
                 .auth()
                 .oauth2(accessToken.accessToken())
                 .when()
                 .queryParam("type", "tracks")
-                .queryParam("q", "song")
-                .log().all()
+                .queryParam("q", song)
                 .get();
     }
 
