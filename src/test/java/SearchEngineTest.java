@@ -8,9 +8,9 @@ public class SearchEngineTest {
 
     @ParameterizedTest
     @CsvFileSource(files = "src/data/Data.txt", numLinesToSkip = 1)
-    void SearchSongBySongName(String songName, String artist) {
-        SearchEngine searchEngine = new SearchEngine(songName);
+    void CheckIfTracksAreDigitalizedAndExistInChartmetricDb(String track, String artist) {
+        SearchEngine searchEngine = new SearchEngine(track);
         System.out.print(searchEngine.response());
-        Assertions.assertFalse(searchEngine.response().toLowerCase().contains(artist.toLowerCase()));
+        Assertions.assertTrue(searchEngine.response().toLowerCase().contains(artist.toLowerCase()));
     }
 }

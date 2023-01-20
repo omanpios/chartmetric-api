@@ -8,7 +8,7 @@ import io.restassured.response.Response;
 public class SearchEngine {
     Response response;
 
-    public SearchEngine(String song) {
+    public SearchEngine(String track) {
         RestAssured.baseURI = ("https://api.chartmetric.com/");
         RestAssured.basePath = ("api/search");
 
@@ -20,7 +20,7 @@ public class SearchEngine {
                 .oauth2(accessToken.accessToken())
                 .when()
                 .queryParam("type", "tracks")
-                .queryParam("q", song)
+                .queryParam("q", track)
                 .get();
     }
 
